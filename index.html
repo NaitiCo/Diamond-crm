@@ -1,112 +1,176 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<title>Diamond Diving CRM</title>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Diamond Diving — Operations</title>
 <style>
-:root{--bg:#0b1a24;--panel:#12252f;--panel2:#17303c;--line:#22414f;--text:#e8f1f5;--muted:#8fb0be;--accent:#12b5a5;--warn:#f0b429;--bad:#e5484d;--radius:12px}
-*{box-sizing:border-box}
+:root{
+  --brand:#009FCF; --brand-dark:#00475C; --brand-mid:#2B5672; --teal:#57BBB9;
+  --bg:#F2F7F9; --surface:#FFFFFF; --line:#D9E6EC; --line2:#EEF4F7;
+  --text:#12303D; --muted:#6B7C85; --warn:#B7791F; --warn-bg:#FDF6E3;
+  --bad:#C0392B; --bad-bg:#FDECEA; --ok:#1E7A46; --ok-bg:#E7F5EC; --radius:12px;
+}
 [hidden]{display:none !important}
-html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
-h1,h2,h3{margin:0 0 .5rem}
-#app{max-width:960px;margin:0 auto;padding:0 12px 90px}
-.topbar{position:sticky;top:0;z-index:20;background:rgba(11,26,36,.96);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px;padding:10px 12px;margin:0 -12px 14px}
-.brand{font-weight:700}.brand small{display:block;font-weight:400;color:var(--muted);font-size:11px}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+h1,h2,h3{margin:0 0 .4rem}
+#app{max-width:1000px;margin:0 auto;padding:0 14px 96px}
+.topbar{position:sticky;top:0;z-index:20;background:var(--brand-dark);color:#fff;display:flex;align-items:center;gap:10px;padding:12px 14px;margin:0 -14px 16px;box-shadow:0 2px 10px rgba(0,71,92,.25)}
+.brand{font-weight:700;letter-spacing:.4px;line-height:1.1}
+.brand small{display:block;font-weight:400;opacity:.8;font-size:11px;letter-spacing:.2px}
+.brand .dot{color:var(--teal)}
 .spacer{flex:1}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:14px;margin-bottom:12px}
-.card h3{font-size:14px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:14px;box-shadow:0 1px 2px rgba(18,48,61,.04)}
+.card h3{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px}
 .row{display:flex;gap:10px;flex-wrap:wrap}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
-.kpi{background:var(--panel2);border:1px solid var(--line);border-radius:var(--radius);padding:12px}
-.kpi b{display:block;font-size:26px}.kpi span{color:var(--muted);font-size:12px}
-.btn{background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:9px;padding:9px 13px;font-size:14px;cursor:pointer}
-.btn.primary{background:var(--accent);border-color:var(--accent);color:#04201d;font-weight:600}
-.btn.ghost{background:transparent}.btn.sm{padding:6px 9px;font-size:12px}
-label{display:block;font-size:12px;color:var(--muted);margin:8px 0 3px}
-input,select,textarea{width:100%;background:#0d1f28;border:1px solid var(--line);color:var(--text);border-radius:9px;padding:10px;font-size:15px;font-family:inherit}
-textarea{min-height:70px}
-.pill{display:inline-block;border-radius:999px;padding:3px 9px;font-size:11px;font-weight:600}
-.pill.proposed{background:#3a3320;color:var(--warn)}.pill.scheduled{background:#14323a;color:#6fd3e0}
-.pill.in_progress{background:#1d2f4d;color:#7fb0ff}.pill.done{background:#173421;color:#7ee08f}
-.pill.not_found,.pill.postponed{background:#3b2a1a;color:#f0a35e}.pill.canceled{background:#3a1d1f;color:#ff9a9c}
-.pill.pending{background:#3a3320;color:var(--warn)}.pill.paid{background:#173421;color:#7ee08f}
-.jobrow{border:1px solid var(--line);border-radius:10px;padding:10px;margin-bottom:8px;background:var(--panel2)}
-.jobrow .meta{color:var(--muted);font-size:12px;margin-top:2px}
-.jobrow .actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
-.list-item{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);align-items:center}
+.row>.f{flex:1;min-width:130px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--brand);border-radius:10px;padding:14px}
+.kpi b{display:block;font-size:26px;color:var(--brand-dark)}
+.kpi span{color:var(--muted);font-size:12px}
+.btn{background:#fff;color:var(--brand-dark);border:1px solid var(--line);border-radius:9px;padding:10px 14px;font-size:14px;cursor:pointer;font-weight:500}
+.btn.primary{background:var(--brand);border-color:var(--brand);color:#fff;font-weight:600}
+.btn.primary:hover{filter:brightness(.95)}
+.btn.dark{background:var(--brand-dark);border-color:var(--brand-dark);color:#fff}
+.btn.ghost{background:transparent}
+.btn.sm{padding:7px 10px;font-size:12.5px}
+.btn.danger{background:transparent;border-color:var(--bad);color:var(--bad)}
+.btn.steel{background:var(--teal);border-color:var(--teal);color:#08343a;font-weight:600}
+label{display:block;font-size:12px;color:var(--muted);margin:10px 0 4px;font-weight:600}
+input,select,textarea{width:100%;background:#fff;border:1px solid var(--line);color:var(--text);border-radius:9px;padding:11px;font-size:15px;font-family:inherit}
+input:focus,select:focus,textarea:focus{outline:2px solid rgba(0,159,207,.35);border-color:var(--brand)}
+textarea{min-height:74px}
+.pill{display:inline-block;border-radius:999px;padding:3px 10px;font-size:11px;font-weight:700;letter-spacing:.3px}
+.pill.proposed,.pill.pending,.pill.draft{background:var(--warn-bg);color:var(--warn)}
+.pill.scheduled,.pill.sent{background:#E4F4FA;color:#0B6C8C}
+.pill.in_progress{background:#E8EEFB;color:#2B5672}
+.pill.done,.pill.paid,.pill.accepted,.pill.converted{background:var(--ok-bg);color:var(--ok)}
+.pill.not_found,.pill.postponed{background:#FBEFE2;color:#9A5B12}
+.pill.canceled,.pill.declined{background:var(--bad-bg);color:var(--bad)}
+.jobrow{border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:10px;background:var(--surface)}
+.jobrow .meta{color:var(--muted);font-size:12.5px;margin-top:3px}
+.jobrow .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.list-item{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line2);align-items:center}
 .list-item:last-child{border-bottom:0}
-.muted{color:var(--muted)}.small{font-size:12px}
-.nav{position:fixed;bottom:0;left:0;right:0;background:rgba(11,26,36,.98);border-top:1px solid var(--line);display:flex;z-index:30}
-.nav a{flex:1;text-align:center;padding:9px 4px 12px;font-size:11px;color:var(--muted);text-decoration:none}
-.nav a.active{color:var(--accent)}.nav a b{display:block;font-size:17px;font-weight:400}
-.toast{position:fixed;left:50%;bottom:80px;transform:translateX(-50%);background:#04201d;border:1px solid var(--accent);padding:10px 14px;border-radius:9px;z-index:60;font-size:14px}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.65);display:flex;align-items:flex-end;z-index:40}
-.modal-box{background:var(--panel);width:100%;max-height:85vh;border-radius:14px 14px 0 0;padding:14px;display:flex;flex-direction:column}
-.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-.msgbox{white-space:pre-wrap;background:#0d1f28;border:1px solid var(--line);border-radius:10px;padding:12px;overflow:auto;font-family:inherit;font-size:14px;max-height:60vh}
-.banner{background:#3a3320;border:1px solid var(--warn);color:var(--warn);border-radius:10px;padding:10px;font-size:12px;margin-bottom:12px}
-.section-title{display:flex;justify-content:space-between;align-items:center;margin:14px 0 6px}.section-title h2{font-size:17px}
-a{color:var(--accent)}
-@media(min-width:640px){.modal{align-items:center}.modal-box{border-radius:14px;max-width:560px;margin:0 auto}}
+.muted{color:var(--muted)}.small{font-size:12.5px}
+.nav{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.98);border-top:1px solid var(--line);display:flex;z-index:30;backdrop-filter:blur(8px)}
+.nav a{flex:1;text-align:center;padding:8px 2px 12px;font-size:10px;color:var(--muted);text-decoration:none;font-weight:600}
+.nav a.active{color:var(--brand)}
+.nav a b{display:block;font-size:18px;font-weight:400;line-height:1.25}
+.toast{position:fixed;left:50%;bottom:84px;transform:translateX(-50%);background:var(--brand-dark);color:#fff;padding:11px 16px;border-radius:9px;z-index:60;font-size:14px;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.modal{position:fixed;inset:0;background:rgba(0,40,55,.55);display:flex;align-items:flex-end;z-index:40}
+.modal-box{background:var(--surface);width:100%;max-height:86vh;border-radius:16px 16px 0 0;padding:16px;display:flex;flex-direction:column}
+.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.msgbox{white-space:pre-wrap;background:#F7FAFB;border:1px solid var(--line);border-radius:10px;padding:14px;overflow:auto;font-family:inherit;font-size:14px;max-height:58vh;color:var(--text)}
+.banner{background:var(--warn-bg);border:1px solid #EAC98A;color:var(--warn);border-radius:10px;padding:11px;font-size:12.5px;margin-bottom:14px}
+.section-title{display:flex;justify-content:space-between;align-items:center;margin:16px 0 8px;gap:10px}
+.section-title h2{font-size:17px;color:var(--brand-dark)}
+a{color:var(--brand)}
+.hero{background:linear-gradient(135deg,var(--brand-dark),#0A6F86);color:#fff;border-radius:14px;padding:18px;margin-bottom:16px}
+.hero h1{font-size:22px;letter-spacing:1px;margin:0 0 4px}
+.hero p{margin:0;opacity:.9;font-size:13px}
+.tag{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:3px 10px;font-size:11px;margin:6px 6px 0 0}
+.price-tier{display:flex;gap:10px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line2)}
+.price-tier span{flex:1;font-size:13.5px}
+.price-tier input{width:120px}
+@media(min-width:680px){.modal{align-items:center}.modal-box{border-radius:16px;max-width:600px;margin:0 auto}}
 </style>
 </head>
 <body>
 <div id="app"></div>
 <div id="toast" class="toast" hidden></div>
-<div id="modal" class="modal" hidden><div class="modal-box"><div class="modal-head"><strong id="modal-title"></strong><button class="btn sm ghost" onclick="closeModal()">✕</button></div><pre id="modal-body" class="msgbox"></pre><div style="margin-top:10px"><button class="btn primary" onclick="copyModal()">Copiar texto</button></div></div></div>
+<div id="modal" class="modal" hidden>
+  <div class="modal-box">
+    <div class="modal-head"><strong id="modal-title"></strong><button class="btn sm ghost" onclick="closeModal()">✕ Close</button></div>
+    <pre id="modal-body" class="msgbox"></pre>
+    <div style="margin-top:12px;display:flex;gap:8px">
+      <button class="btn primary" onclick="copyModal()">📋 Copy text</button>
+      <button class="btn" onclick="shareModal()">📤 Share</button>
+    </div>
+  </div>
+</div>
 <script>
 'use strict';
-// ================= armazenamento resiliente =================
-var LSKEY='dd_crm_v1';
+/* ============================================================
+   Diamond Diving — Operations (single-file app)
+   Colors and services based on diamonddivingllc.com
+   ============================================================ */
+
+var LSKEY='dd_ops_v2';
 var S={data:null,persistent:true};
 
+var SERVICES=[
+  {id:1,name:'Bottom Cleaning',desc:'Scrub growth, grass, oysters and barnacles from hull and running gear.'},
+  {id:2,name:'Propeller Changes',desc:'Remove and reinstall propellers with precision.'},
+  {id:3,name:'Zinc Installation',desc:'Replace expired zinc anodes to protect against corrosion.'},
+  {id:4,name:'Intake Cleaning',desc:'Clean intakes and through-holes, removing all debris.'},
+  {id:5,name:'Underwater Video',desc:'Detailed video and photos of propellers, zincs and bottom paint.'},
+  {id:6,name:'Search & Recover',desc:'Recover items lost overboard — keys, phones, jewelry, anchors.'}
+];
+
+function defaultPricing(){
+  return [
+    {label:'Up to 25 ft', max:25, price:null},
+    {label:'26 – 35 ft', max:35, price:null},
+    {label:'36 – 45 ft', max:45, price:null},
+    {label:'46 – 55 ft', max:55, price:null},
+    {label:'56 – 70 ft', max:70, price:null},
+    {label:'71 – 90 ft', max:90, price:null},
+    {label:'91 ft and up', max:9999, price:null}
+  ];
+}
 function blank(){
-  return {clients:[],boats:[],jobs:[],reports:[],invoices:[],
-    settings:{role:'admin',diverName:'Christopher',divers:['Christopher','Eduardo'],services:[
-      {id:1,name:'Bottom cleaning',price:150},
-      {id:2,name:'Interior cleaning',price:200},
-      {id:3,name:'Wash & polish',price:250},
-      {id:4,name:'Bottom cleaning + running gear',price:200},
-      {id:5,name:'Zinc replacement',price:0}
-    ]},seq:{clients:0,boats:0,jobs:0,invoices:0}};
+  return {
+    clients:[],boats:[],jobs:[],reports:[],invoices:[],quotes:[],
+    settings:{
+      role:'admin', diverName:'Christopher',
+      divers:['Christopher','Eduardo'],
+      pricing:defaultPricing()
+    },
+    seq:{clients:0,boats:0,jobs:0,invoices:0,quotes:0}
+  };
 }
-function testStorage(){
-  try{ localStorage.setItem('__t','1'); localStorage.removeItem('__t'); return true; }catch(e){ return false; }
-}
+function testStorage(){ try{ localStorage.setItem('__t','1'); localStorage.removeItem('__t'); return true; }catch(e){ return false; } }
 function load(){
   S.persistent=testStorage();
   if(!S.persistent){ S.data=blank(); return; }
   try{
     var raw=localStorage.getItem(LSKEY);
-    if(!raw){ S.data=blank(); save(); }
-    else { S.data=JSON.parse(raw); }
+    S.data=raw?JSON.parse(raw):blank();
+    // garante campos novos em backups antigos
+    if(!S.data.settings.pricing) S.data.settings.pricing=defaultPricing();
+    if(!S.data.quotes) S.data.quotes=[];
+    if(!S.data.settings.divers) S.data.settings.divers=['Christopher','Eduardo'];
+    save();
   }catch(e){ S.persistent=false; S.data=blank(); }
 }
 function save(){
   if(!S.persistent) return;
   try{ localStorage.setItem(LSKEY,JSON.stringify(S.data)); }
-  catch(e){ S.persistent=false; alert('Nao foi possivel salvar automaticamente neste navegador. Use Exportar backup e Importar backup.'); render(); }
+  catch(e){ S.persistent=false; alert('This browser is not saving automatically. Use Backup / Export before closing.'); render(); }
 }
 function uid(t){ S.data.seq[t]=(S.data.seq[t]||0)+1; return S.data.seq[t]; }
 
-// ================= util =================
-var $=function(s,r){return (r||document).querySelector(s);};
-var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});};
-var STATUS={proposed:'Proposta',scheduled:'Agendado',in_progress:'Em execucao',done:'Concluido',not_found:'Nao encontrado',postponed:'Adiado',canceled:'Cancelado'};
-var FREQ={weekly:'Semanal',biweekly:'Quinzenal',monthly:'Mensal',one_time:'Avulso'};
+/* ---------- utils ---------- */
+function $(s,r){ return (r||document).querySelector(s); }
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+var STATUS={proposed:'Proposed',scheduled:'Scheduled',in_progress:'In progress',done:'Done',not_found:'Boat not found',postponed:'Postponed',canceled:'Canceled'};
+var FREQ={weekly:'Weekly',biweekly:'Bi-weekly',monthly:'Monthly',one_time:'One-time'};
+var QSTATUS={draft:'Draft',sent:'Sent',accepted:'Accepted',declined:'Declined'};
 function today(){ var d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
-function fmtDate(d){ if(!d) return ''; var p=d.split('-'); return p[2]+'/'+p[1]+'/'+p[0]; }
-function toast(m){ var t=$('#toast'); t.textContent=m; t.hidden=false; clearTimeout(toast._t); toast._t=setTimeout(function(){t.hidden=true;},2200); }
-function byId(t,id){ return S.data[t].find(function(x){return x.id===id;}); }
+function fmtDate(d){ if(!d) return ''; var p=d.split('-'); return p[1]+'/'+p[2]+'/'+p[0]; }
+function toast(m){ var t=$('#toast'); t.textContent=m; t.hidden=false; clearTimeout(toast._t); toast._t=setTimeout(function(){ t.hidden=true; },2400); }
+function byId(t,id){ return S.data[t].find(function(x){ return x.id===id; }); }
 function isAdmin(){ return (S.data.settings.role||'admin')==='admin'; }
 function currentDiver(){ return S.data.settings.diverName||'Christopher'; }
 function switchRole(v){
   if(v==='admin'){ S.data.settings.role='admin'; }
   else { var p=v.split('|'); S.data.settings.role='diver'; S.data.settings.diverName=p[1]||'Christopher'; }
   save();
-  if(!isAdmin()&&location.hash.indexOf('#/job/')!==0) location.hash='#/agenda';
+  if(!isAdmin() && location.hash.indexOf('#/job/')!==0) location.hash='#/schedule';
   render();
 }
 function nextDate(dateStr,freq){
@@ -117,244 +181,430 @@ function nextDate(dateStr,freq){
   else return null;
   return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
 }
-
-// ================= shell =================
-function shell(active,content){
-  var link=function(h,k,i,l){return '<a href="'+h+'" class="'+(active===k?'active':'')+'"><b>'+i+'</b>'+l+'</a>';};
-  var warn=S.persistent?'':'<div class="banner">⚠️ Este navegador nao esta salvando automaticamente (abriu como arquivo local). Exporte um backup antes de fechar. <a href="#/settings">Abrir backup</a></div>';
-  var roleOpts='<option value="admin"'+(isAdmin()?' selected':'')+'>Office (ADM)</option>'+S.data.settings.divers.map(function(d){return '<option value="diver|'+esc(d)+'"'+(!isAdmin()&&currentDiver()===d?' selected':'')+'>Mergulhador · '+esc(d)+'</option>';}).join('');
-  var nav=link('#/dashboard','dashboard','▦','Painel')+link('#/agenda','agenda','🗓',isAdmin()?'Agenda':'Meu dia');
-  if(isAdmin()) nav+=link('#/clients','clients','👤','Clientes')+link('#/boats','boats','⛵','Barcos')+link('#/finance','finance','$','Cobranca');
-  $('#app').innerHTML=
-   '<div class="topbar"><div class="brand">Diamond Diving<small>'+(isAdmin()?'Office (ADM)':'Mergulhador · '+esc(currentDiver()))+'</small></div><div class="spacer"></div>'+
-   '<select onchange="switchRole(this.value)" style="width:auto;padding:6px;font-size:12px">'+roleOpts+'</select>'+
-   '<a class="btn sm ghost" href="#/settings">Backup</a></div>'+warn+content+
-   '<nav class="nav">'+nav+'</nav>';
+function serviceName(id){ var s=SERVICES.find(function(x){ return x.id===id; }); return s?s.name:'Service'; }
+function bottomPrice(ft){
+  if(!ft) return null;
+  var t=(S.data.settings.pricing||[]).find(function(x){ return Number(ft)<=Number(x.max); });
+  return t && t.price!=null && t.price!=='' ? Number(t.price) : null;
 }
 
-// ================= dashboard =================
+/* ---------- shell ---------- */
+function shell(active,content){
+  var link=function(h,k,i,l){ return '<a href="'+h+'" class="'+(active===k?'active':'')+'"><b>'+i+'</b>'+l+'</a>'; };
+  var warn=S.persistent?'':'<div class="banner">⚠️ This browser is not saving automatically. Go to <a href="#/settings">Backup</a> and export before closing.</div>';
+  var roleOpts='<option value="admin"'+(isAdmin()?' selected':'')+'>Office (Admin)</option>'+
+    S.data.settings.divers.map(function(d){ return '<option value="diver|'+esc(d)+'"'+(!isAdmin()&&currentDiver()===d?' selected':'')+'>Diver · '+esc(d)+'</option>'; }).join('');
+  var nav=link('#/dashboard','dashboard','▦','Dashboard')+link('#/schedule','schedule','🗓',isAdmin()?'Schedule':'My day');
+  if(isAdmin()) nav+=link('#/clients','clients','👤','Clients')+link('#/boats','boats','⛵','Boats')+link('#/quotes','quotes','🧾','Quotes')+link('#/billing','billing','$','Billing');
+  $('#app').innerHTML=
+    '<div class="topbar"><div class="brand">DIAMOND DIVING<span class="dot">.</span><small>'+(isAdmin()?'Office (Admin)':'Diver · '+esc(currentDiver()))+'</small></div><div class="spacer"></div>'+
+    '<select onchange="switchRole(this.value)" style="width:auto;padding:7px;font-size:12px;background:#fff;color:#12303D;border:0">'+roleOpts+'</select>'+
+    '<a class="btn sm ghost" style="color:#fff;border-color:rgba(255,255,255,.4)" href="#/settings">⚙︎</a></div>'+
+    warn+content+'<nav class="nav">'+nav+'</nav>';
+}
+
+/* ---------- dashboard ---------- */
 function viewDashboard(){
   var t=today();
-  var mine=function(j){return isAdmin()||j.diver===currentDiver();};
-  var todays=S.data.jobs.filter(function(j){return j.scheduled_date===t&&mine(j);}).sort(function(a,b){return a.sequence-b.sequence;});
-  var pending=S.data.invoices.filter(function(i){return i.status==='pending';});
-  var total=pending.reduce(function(s,i){return s+Number(i.amount||0);},0);
-  var proposed=S.data.jobs.filter(function(j){return j.status==='proposed';}).length;
-  var rows=todays.length?todays.map(function(j){var b=byId('boats',j.boat_id)||{};return '<div class="jobrow"><div><strong>'+esc(b.name||'Sem nome')+'</strong> <span class="pill '+j.status+'">'+STATUS[j.status]+'</span></div><div class="meta">'+esc(j.optional_time||'')+' · '+esc(j.diver||'sem mergulhador')+' · '+esc(b.marina||'marina nao informada')+'</div><div class="actions"><button class="btn sm" onclick="location.hash=\'#/job/'+j.id+'\'">Abrir</button></div></div>';}).join(''):'<p class="muted small">Nenhum barco agendado para hoje.</p>';
+  var mine=function(j){ return isAdmin()||j.diver===currentDiver(); };
+  var todays=S.data.jobs.filter(function(j){ return j.scheduled_date===t&&mine(j); }).sort(function(a,b){ return a.sequence-b.sequence; });
+  var pending=S.data.invoices.filter(function(i){ return i.status==='pending'; });
+  var total=pending.reduce(function(s,i){ return s+Number(i.amount||0); },0);
+  var proposed=S.data.jobs.filter(function(j){ return j.status==='proposed'; }).length;
+  var openQuotes=S.data.quotes.filter(function(q){ return q.status==='draft'||q.status==='sent'; }).length;
+  var rows=todays.length?todays.map(function(j){ var b=byId('boats',j.boat_id)||{};
+    return '<div class="jobrow"><div><strong>'+esc(b.name||'Unnamed')+'</strong> <span class="pill '+j.status+'">'+STATUS[j.status]+'</span></div>'+
+      '<div class="meta">'+esc(b.length_ft?b.length_ft+"'":"")+' · '+esc(b.marina||'location not set')+' · '+esc(j.diver||'unassigned')+'</div>'+
+      '<div class="actions"><button class="btn sm" onclick="location.hash=\'#/job/'+j.id+'\'">Open</button></div></div>'; }).join('')
+    :'<p class="muted small">No boats scheduled today.</p>';
   var kpis=isAdmin()
-    ? '<div class="kpi"><b>'+todays.length+'</b><span>Barcos hoje ('+fmtDate(t)+')</span></div><div class="kpi"><b>'+pending.length+'</b><span>Cobrancas pendentes</span></div><div class="kpi"><b>US$ '+total.toFixed(0)+'</b><span>A receber</span></div><div class="kpi"><b>'+proposed+'</b><span>Propostas de recorrencia</span></div>'
-    : '<div class="kpi"><b>'+todays.length+'</b><span>Meus barcos hoje ('+fmtDate(t)+')</span></div><div class="kpi"><b>'+todays.filter(function(j){return j.status==='done';}).length+'</b><span>Concluidos hoje</span></div>';
-  shell('dashboard','<div class="grid">'+kpis+'</div><div class="card"><h3>'+(isAdmin()?'Barcos de hoje':'Meu dia')+'</h3>'+rows+'</div>');
+    ? '<div class="kpi"><b>'+todays.length+'</b><span>Boats today ('+fmtDate(t)+')</span></div>'+
+      '<div class="kpi"><b>'+proposed+'</b><span>Recurrence proposals</span></div>'+
+      '<div class="kpi"><b>'+openQuotes+'</b><span>Open quotes</span></div>'+
+      '<div class="kpi"><b>$'+total.toFixed(0)+'</b><span>Pending payments ('+pending.length+')</span></div>'
+    : '<div class="kpi"><b>'+todays.length+'</b><span>My boats today ('+fmtDate(t)+')</span></div>'+
+      '<div class="kpi"><b>'+todays.filter(function(j){ return j.status==='done'; }).length+'</b><span>Completed today</span></div>';
+  var hero=isAdmin()?'<div class="hero"><h1>WE GO DEEP</h1><p>Underwater boat maintenance in South Florida</p><span class="tag">Commercial Diving Certified</span><span class="tag">ACDE Accredited</span><span class="tag">30+ years</span></div>':'';
+  shell('dashboard',hero+'<div class="grid">'+kpis+'</div><div class="card"><h3>'+(isAdmin()?"Today's schedule":'My day')+'</h3>'+rows+'</div>');
 }
 
-// ================= agenda =================
-function viewAgenda(){
+/* ---------- schedule ---------- */
+function viewSchedule(){
   var date=(location.hash.split('date=')[1])||today();
-  var jobs=S.data.jobs.filter(function(j){return j.scheduled_date===date&&(isAdmin()||j.diver===currentDiver());}).sort(function(a,b){return a.sequence-b.sequence;});
-  var divers={};jobs.forEach(function(j){var k=j.diver||'Sem mergulhador';(divers[k]=divers[k]||[]).push(j);});
-  var list=Object.keys(divers).map(function(d){return '<div class="card"><div class="section-title"><h2>'+esc(d)+'</h2><button class="btn sm ghost" onclick="daySheet(\''+date+'\',\''+esc(d).replace(/'/g,"\\'")+'\')">Texto do dia</button></div>'+divers[d].map(jobRow).join('')+'</div>';}).join('')||'<p class="muted small">Nada agendado nesta data.</p>';
-  var prop=isAdmin()?S.data.jobs.filter(function(j){return j.status==='proposed';}):[];
-  var propHtml=prop.length?'<div class="card"><h3>Propostas de recorrencia</h3>'+prop.map(function(j){var b=byId('boats',j.boat_id)||{};return '<div class="jobrow"><div><strong>'+esc(b.name)+'</strong> · '+fmtDate(j.scheduled_date)+' <span class="pill proposed">Proposta</span></div><div class="meta">'+esc(FREQ[b.frequency]||'')+' · '+esc(j.diver||'sem mergulhador')+'</div><div class="actions"><button class="btn sm primary" onclick="setStatus('+j.id+',\'scheduled\')">Confirmar</button><button class="btn sm" onclick="location.hash=\'#/job/'+j.id+'\'">Abrir</button></div></div>';}).join('')+'</div>':'';
-  shell('agenda','<div class="card"><label>Data</label><input type="date" value="'+date+'" onchange="location.hash=\'#/agenda?date=\'+this.value">'+(isAdmin()?'<div class="section-title"><h2>Novo agendamento</h2></div><div id="newjob"></div>':'<p class="small muted">Seus barcos do dia. Abra cada um para ver acesso, servico e preencher o relatorio.</p>')+'</div>'+list+propHtml);
+  var jobs=S.data.jobs.filter(function(j){ return j.scheduled_date===date && (isAdmin()||j.diver===currentDiver()); }).sort(function(a,b){ return a.sequence-b.sequence; });
+  var groups={}; jobs.forEach(function(j){ var k=j.diver||'Unassigned'; (groups[k]=groups[k]||[]).push(j); });
+  var list=Object.keys(groups).map(function(d){
+    return '<div class="card"><div class="section-title"><h2>'+esc(d)+'</h2>'+
+      (isAdmin()?'<button class="btn sm ghost" onclick="daySheet(\''+date+'\',\''+esc(d).replace(/'/g,"\\'")+'\')">📋 Day sheet</button>':'')+
+      '</div>'+groups[d].map(jobRow).join('')+'</div>';
+  }).join('')||'<p class="muted small">Nothing scheduled for this date.</p>';
+  var prop=isAdmin()?S.data.jobs.filter(function(j){ return j.status==='proposed'; }):[];
+  var propHtml=prop.length?'<div class="card"><h3>Recurrence proposals</h3>'+prop.map(function(j){ var b=byId('boats',j.boat_id)||{};
+    return '<div class="jobrow"><div><strong>'+esc(b.name||'Unnamed')+'</strong> · '+fmtDate(j.scheduled_date)+' <span class="pill proposed">Proposed</span></div>'+
+      '<div class="meta">'+esc(FREQ[b.frequency]||'')+' · '+esc(j.diver||'unassigned')+'</div>'+
+      '<div class="actions"><button class="btn sm primary" onclick="setStatus('+j.id+',\'scheduled\')">Confirm</button>'+
+      '<button class="btn sm" onclick="location.hash=\'#/job/'+j.id+'\'">Open</button></div></div>'; }).join('')+'</div>':'';
+  shell('schedule','<div class="card"><label>Date</label><input type="date" value="'+date+'" onchange="location.hash=\'#/schedule?date=\'+this.value">'+
+    (isAdmin()?'<div class="section-title"><h2>New appointment</h2></div><div id="newjob"></div>'
+             :'<p class="small muted">Your boats for the day. Tap Open to see location, size and notes, then fill the report.</p>')+'</div>'+list+propHtml);
   if(isAdmin()) renderNewJobForm(date);
 }
 function jobRow(j){
-  var b=byId('boats',j.boat_id)||{};var c=b.client_id?byId('clients',b.client_id):null;
-  var svc=(S.data.settings.services.find(function(s){return s.id===j.service_id;})||{}).name||'Servico';
-  return '<div class="jobrow"><div><strong>'+esc(b.name||'Sem nome')+'</strong> '+(j.optional_time?'<span class="muted small">'+esc(j.optional_time)+'</span>':'')+' <span class="pill '+j.status+'">'+STATUS[j.status]+'</span></div><div class="meta">'+esc(svc)+' · '+esc(b.marina||'—')+(b.slip?' / '+esc(b.slip):'')+' · '+esc(c?c.name:'cliente nao informado')+'</div>'+(b.access_notes?'<div class="meta">🔑 '+esc(b.access_notes)+'</div>':'')+'<div class="actions"><button class="btn sm" onclick="location.hash=\'#/job/'+j.id+'\'">Abrir</button>'+((j.status!=='done')?'<button class="btn sm primary" onclick="quickDone('+j.id+')">Concluir</button>':'')+'</div></div>';
+  var b=byId('boats',j.boat_id)||{};
+  var c=(isAdmin()&&b.client_id)?byId('clients',b.client_id):null;
+  return '<div class="jobrow"><div><strong>'+esc(b.name||'Unnamed')+'</strong>'+(b.length_ft?' <span class="muted small">'+b.length_ft+"'</span>":'')+
+    ' <span class="pill '+j.status+'">'+STATUS[j.status]+'</span></div>'+
+    '<div class="meta">'+esc(serviceName(j.service_id))+' · '+esc(b.marina||'—')+(b.slip?' / '+esc(b.slip):'')+(c?' · '+esc(c.name):'')+'</div>'+
+    (b.access_notes?'<div class="meta">🔑 '+esc(b.access_notes)+'</div>':'')+
+    '<div class="actions"><button class="btn sm" onclick="location.hash=\'#/job/'+j.id+'\'">Open</button>'+
+    (j.status!=='done'?'<button class="btn sm primary" onclick="quickDone('+j.id+')">Mark done</button>':'')+'</div></div>';
 }
 function renderNewJobForm(date){
   var boats=S.data.boats;
-  var bopts=boats.map(function(b){return '<option value="'+b.id+'">'+esc(b.name||'Barco '+b.id)+'</option>';}).join('');
-  var sopts=S.data.settings.services.map(function(s){return '<option value="'+s.id+'">'+esc(s.name)+'</option>';}).join('');
-  var dopts=S.data.settings.divers.map(function(d){return '<option value="'+esc(d)+'">'+esc(d)+'</option>';}).join('');
+  var bopts=boats.map(function(b){ return '<option value="'+b.id+'">'+esc(b.name||'Boat '+b.id)+(b.length_ft?' ('+b.length_ft+"')":"")+'</option>'; }).join('');
+  var sopts=SERVICES.map(function(s){ return '<option value="'+s.id+'">'+esc(s.name)+'</option>'; }).join('');
+  var dopts=S.data.settings.divers.map(function(d){ return '<option value="'+esc(d)+'">'+esc(d)+'</option>'; }).join('');
   $('#newjob').innerHTML=
-    '<label>Barco</label><select id="nj_boat">'+(bopts||'<option value="">Cadastre um barco primeiro</option>')+'</select>'+
-    '<div class="row"><div style="flex:1"><label>Servico</label><select id="nj_service">'+sopts+'</select></div>'+
-    '<div style="flex:1"><label>Mergulhador</label><select id="nj_diver">'+dopts+'</select></div></div>'+
-    '<div class="row"><div style="flex:1"><label>Valor (US$)</label><input id="nj_price" type="number" step="0.01"></div>'+
-    '<div style="flex:1"><label>Hora (opcional)</label><input id="nj_time" placeholder="ex: 9:00"></div></div>'+
-    '<button class="btn primary" style="margin-top:12px" onclick="createJob(\''+date+'\')">Agendar</button>';
+    '<label>Boat</label><select id="nj_boat" onchange="autoFillPrice()">'+(bopts||'<option value="">Register a boat first</option>')+'</select>'+
+    '<div class="row"><div class="f"><label>Service</label><select id="nj_service" onchange="autoFillPrice()">'+sopts+'</select></div>'+
+    '<div class="f"><label>Diver</label><select id="nj_diver">'+dopts+'</select></div></div>'+
+    '<label>Observations</label><input id="nj_notes" placeholder="Anything the diver should know (gate code, dock, etc.)">'+
+    '<p class="small muted" id="nj_pricehint" style="margin:10px 0 0"></p>'+
+    '<button class="btn primary" style="margin-top:12px" onclick="createJob(\''+date+'\')">Schedule</button>';
+  autoFillPrice();
+}
+function autoFillPrice(){
+  if(!isAdmin()) return;
+  var b=byId('boats',Number($('#nj_boat').value))||{};
+  var svc=Number($('#nj_service').value);
+  var hint=$('#nj_pricehint'); if(!hint) return;
+  if(svc===1){
+    var p=bottomPrice(b.length_ft);
+    hint.textContent = p!=null ? ('Bottom Cleaning price for '+b.length_ft+"': $"+p) : 'Bottom Cleaning price not set for this size (set it in Settings).';
+  } else {
+    hint.textContent='Price for this service is set per job (many variables).';
+  }
 }
 function createJob(date){
-  var bid=Number($('#nj_boat').value); if(!bid) return toast('Selecione um barco');
+  var bid=Number($('#nj_boat').value); if(!bid) return toast('Select a boat');
   var b=byId('boats',bid)||{};
   var svcId=Number($('#nj_service').value)||null;
-  var svc=S.data.settings.services.find(function(s){return s.id===svcId;})||{};
-  var price=$('#nj_price').value!==''?Number($('#nj_price').value):(b.default_price!=null?b.default_price:(svc.price||0));
+  var price=(svcId===1)?bottomPrice(b.length_ft):null;
   var id=uid('jobs');
-  S.data.jobs.push({id:id,boat_id:bid,service_id:svcId,diver:$('#nj_diver').value||null,scheduled_date:date,sequence:S.data.jobs.filter(function(j){return j.scheduled_date===date;}).length+1,optional_time:$('#nj_time').value,status:'scheduled',price:price,notes:''});
-  save();toast('Agendado');render();
+  S.data.jobs.push({id:id,boat_id:bid,service_id:svcId,diver:$('#nj_diver').value||null,scheduled_date:date,
+    sequence:S.data.jobs.filter(function(j){ return j.scheduled_date===date; }).length+1,
+    status:'scheduled',price:price,notes:$('#nj_notes').value||''});
+  save(); toast('Scheduled'); render();
 }
-function quickDone(id){setStatus(id,'done');}
+function quickDone(id){ setStatus(id,'done'); }
 function setStatus(id,st){
   var j=byId('jobs',id); if(!j) return;
   var prev=j.status; j.status=st;
-  if(st==='done'&&prev!=='done'){
+  if(st==='done' && prev!=='done'){
     var b=byId('boats',j.boat_id)||{}; var nd=nextDate(j.scheduled_date,b.frequency||'one_time');
-    if(nd){ var exists=S.data.jobs.some(function(x){return x.boat_id===j.boat_id&&x.scheduled_date===nd&&(x.status==='proposed'||x.status==='scheduled');});
-      if(!exists){ S.data.jobs.push({id:uid('jobs'),boat_id:j.boat_id,service_id:j.service_id,diver:j.diver,scheduled_date:nd,sequence:0,status:'proposed',price:j.price,notes:'Recorrencia automatica ('+FREQ[b.frequency]+')'}); } }
+    if(nd){ var exists=S.data.jobs.some(function(x){ return x.boat_id===j.boat_id&&x.scheduled_date===nd&&(x.status==='proposed'||x.status==='scheduled'); });
+      if(!exists){ S.data.jobs.push({id:uid('jobs'),boat_id:j.boat_id,service_id:j.service_id,diver:j.diver,scheduled_date:nd,sequence:0,status:'proposed',price:j.price,notes:'Auto recurrence ('+FREQ[b.frequency]+')'}); } }
   }
-  save();toast('Atualizado');render();
+  save(); toast('Updated'); render();
 }
 
-// ================= job detail =================
+/* ---------- job detail ---------- */
 function viewJob(id){
-  var j=byId('jobs',id); if(!j) return toast('OS nao encontrada');
-  if(!isAdmin()&&j.diver!==currentDiver()){ toast('Esta OS e de outro mergulhador'); location.hash='#/agenda'; return; }
-  var b=byId('boats',j.boat_id)||{}; var c=b.client_id?byId('clients',b.client_id):null;
-  var r=S.data.reports.find(function(x){return x.job_id===id;})||{};
-  var inv=S.data.invoices.find(function(x){return x.job_id===id;});
-  var svc=(S.data.settings.services.find(function(s){return s.id===j.service_id;})||{}).name||'Servico';
-  var opt=function(v){return ['good','medium','bad','none'].map(function(o){return '<option value="'+o+'"'+(v===o?' selected':'')+'>'+(o==='none'?'None / N/A':o.charAt(0).toUpperCase()+o.slice(1))+'</option>';}).join('');};
-  shell('agenda','<div class="card"><div class="section-title"><h2>'+esc(b.name||'Barco')+'</h2><span class="pill '+j.status+'">'+STATUS[j.status]+'</span></div>'+
-   '<div class="small muted">'+esc(b.make||'')+' '+esc(b.model||'')+(b.length_ft?' '+b.length_ft+"'":'')+' · '+esc(b.marina||'—')+(b.slip?' / '+esc(b.slip):'')+'</div>'+
-   '<div class="small muted">Cliente: '+esc(c?c.name:'nao informado')+(c&&c.phone?' · '+esc(c.phone):'')+'</div>'+
-   (b.access_notes?'<div class="small" style="color:var(--warn)">🔑 Acesso: '+esc(b.access_notes)+'</div>':'')+
-   '<div class="small muted">'+esc(svc)+' · '+fmtDate(j.scheduled_date)+(j.optional_time?' '+esc(j.optional_time):'')+' · '+esc(j.diver||'sem mergulhador')+'</div>'+
-   '<div class="row" style="margin-top:10px">'+['scheduled','in_progress','done','not_found','postponed'].map(function(s){return '<button class="btn sm '+(s===j.status?'primary':'')+'" onclick="setStatus('+j.id+',\''+s+'\')">'+STATUS[s]+'</button>';}).join('')+'</div>'+
-   (isAdmin()?'<label>Valor (US$)</label><div class="row"><input id="jp" type="number" step="0.01" value="'+(j.price==null?'':j.price)+'" style="flex:1"><button class="btn" onclick="savePrice('+j.id+')">Salvar</button></div><div class="row" style="margin-top:10px"><button class="btn sm ghost" onclick="msgClientConfirm('+j.id+')">Texto p/ cliente (confirmacao)</button>'+(r.bottom_paint?'<button class="btn sm ghost" onclick="msgReport('+j.id+')">Texto do relatorio</button>':'')+'</div>':'<div class="row" style="margin-top:10px">'+(r.bottom_paint?'<button class="btn sm ghost" onclick="msgReport('+j.id+')">Texto do relatorio</button>':'')+'</div>')+'</div>'+ 
+  var j=byId('jobs',id); if(!j) return toast('Job not found');
+  if(!isAdmin()&&j.diver!==currentDiver()){ toast('This job belongs to another diver'); location.hash='#/schedule'; return; }
+  var b=byId('boats',j.boat_id)||{};
+  var c=(isAdmin()&&b.client_id)?byId('clients',b.client_id):null;
+  var r=S.data.reports.find(function(x){ return x.job_id===id; })||{};
+  var inv=S.data.invoices.find(function(x){ return x.job_id===id; });
+  var opt=function(v){ return ['good','medium','bad','none'].map(function(o){ return '<option value="'+o+'"'+(v===o?' selected':'')+'>'+(o==='none'?'N/A':o.charAt(0).toUpperCase()+o.slice(1))+'</option>'; }).join(''); };
 
-   '<div class="card"><h3>Relatorio de limpeza</h3>'+
-   '<label>Fundo / pintura</label><select id="r_bottom">'+opt(r.bottom_paint)+'</select>'+
-   '<label>Waterline</label><select id="r_water">'+opt(r.waterline)+'</select><input id="r_water_note" placeholder="Observacao waterline" value="'+esc(r.waterline_note)+'">'+
-   '<label>Running gear</label><select id="r_gear">'+opt(r.running_gear)+'</select><input id="r_gear_note" placeholder="Observacao running gear" value="'+esc(r.running_gear_note)+'">'+
-   '<label>Intakes</label><label class="small" style="color:var(--text)"><input type="checkbox" id="r_intakes" style="width:auto;margin-right:6px"'+(r.intakes_clean?' checked':'')+'>Limpos e sem detritos</label><input id="r_intakes_note" placeholder="Observacao intakes" value="'+esc(r.intakes_note)+'">'+
-   '<label>Zinco</label><select id="r_zinc">'+opt(r.zinc)+'</select><input id="r_zinc_note" placeholder="Zinco: posicao/quantidade (ex: 04 shaft, 3 motors, trim tabs)" value="'+esc(r.zinc_note)+'">'+
-   '<label>Danos aparentes</label><textarea id="r_damage">'+esc(r.damage_note)+'</textarea>'+
-   '<label>Observacoes gerais</label><textarea id="r_general">'+esc(r.general_note)+'</textarea>'+
-   '<button class="btn primary" style="margin-top:10px" onclick="saveReport('+j.id+')">Salvar relatorio</button></div>'+
+  var head='<div class="card"><div class="section-title"><h2>'+esc(b.name||'Boat')+(b.length_ft?' — '+b.length_ft+" ft":'')+'</h2><span class="pill '+j.status+'">'+STATUS[j.status]+'</span></div>'+
+    '<div class="small muted">'+esc([b.make,b.model].filter(Boolean).join(' '))+'</div>'+
+    '<div class="small muted">📍 Location: '+esc(b.marina||'not set')+(b.slip?' / slip '+esc(b.slip):'')+'</div>'+
+    (isAdmin()&&c?'<div class="small muted">👤 Client: '+esc(c.name)+(c.phone?' · '+esc(c.phone):'')+'</div>':'')+
+    (b.access_notes?'<div class="small" style="color:var(--warn)">🔑 Access: '+esc(b.access_notes)+'</div>':'')+
+    '<div class="small muted">'+esc(serviceName(j.service_id))+' · '+fmtDate(j.scheduled_date)+' · '+esc(j.diver||'unassigned')+'</div>'+
+    '<div class="row" style="margin-top:12px">'+['scheduled','in_progress','done','not_found','postponed'].map(function(s){ return '<button class="btn sm '+(s===j.status?'primary':'')+'" onclick="setStatus('+j.id+',\''+s+'\')">'+STATUS[s]+'</button>'; }).join('')+'</div>'+
+    (isAdmin()?'<label>Job price (USD)</label><div class="row"><input id="jp" type="number" step="0.01" value="'+(j.price==null?'':j.price)+'" style="flex:1"><button class="btn" onclick="savePrice('+j.id+')">Save</button></div>':'')+
+    '<label>Observations</label><textarea id="jn" placeholder="Notes about this job">'+esc(j.notes)+'</textarea>'+
+    '<div class="row" style="margin-top:10px"><button class="btn sm" onclick="saveJobNotes('+j.id+')">Save notes</button>'+
+    (isAdmin()?'<button class="btn sm ghost" onclick="msgClientConfirm('+j.id+')">💬 Client confirmation text</button>':'')+
+    (r.bottom_paint?'<button class="btn sm ghost" onclick="msgReport('+j.id+')">📄 Report text</button>':'')+'</div></div>';
 
-   (isAdmin()?'<div class="card"><h3>Cobranca</h3>'+(inv?
-     ('<div class="small">US$ '+Number(inv.amount).toFixed(2)+' · '+esc(inv.method||'forma?')+' · <span class="pill '+inv.status+'">'+(inv.status==='paid'?'Pago':'Pendente')+'</span></div>'+
-      '<div class="row" style="margin-top:8px">'+(inv.status!=='paid'?'<button class="btn sm primary" onclick="payInvoice('+inv.id+',\'zelle\')">Pago (Zelle)</button><button class="btn sm" onclick="payInvoice('+inv.id+',\'card\')">Pago (Cartao)</button>':'')+'</div>')
-     :('<div class="small muted">Sem cobranca para esta OS.</div><div class="row" style="margin-top:8px"><input id="inv_amt" type="number" step="0.01" value="'+(j.price==null?'':j.price)+'" style="flex:1"><select id="inv_m" style="width:auto"><option value="card">Cartao</option><option value="zelle">Zelle</option><option value="cash">Dinheiro</option></select><button class="btn" onclick="createInvoice('+j.id+')">Gerar cobranca</button></div>'))+'</div>':'')+
-   '<a class="small" href="#/agenda?date='+j.scheduled_date+'">← voltar para a agenda</a></div>');
+  var report='<div class="card"><h3>Dive report</h3>'+
+    '<label>Bottom paint</label><select id="r_bottom">'+opt(r.bottom_paint)+'</select>'+
+    '<label>Waterline</label><select id="r_water">'+opt(r.waterline)+'</select><input id="r_water_note" placeholder="Waterline note" value="'+esc(r.waterline_note)+'">'+
+    '<label>Running gear</label><select id="r_gear">'+opt(r.running_gear)+'</select><input id="r_gear_note" placeholder="Running gear note" value="'+esc(r.running_gear_note)+'">'+
+    '<label>Intakes</label><label class="small" style="color:var(--text);font-weight:400"><input type="checkbox" id="r_intakes" style="width:auto;margin-right:6px"'+(r.intakes_clean?' checked':'')+'>Clean and clear of debris</label>'+
+    '<input id="r_intakes_note" placeholder="Intakes note" value="'+esc(r.intakes_note)+'">'+
+    '<label>Zinc</label><select id="r_zinc">'+opt(r.zinc)+'</select><input id="r_zinc_note" placeholder="Zinc location / quantity (e.g. 04 shaft, 3 engines, trim tabs)" value="'+esc(r.zinc_note)+'">'+
+    '<label>Apparent damage</label><textarea id="r_damage" placeholder="Describe any damage">'+esc(r.damage_note)+'</textarea>'+
+    '<label>General notes</label><textarea id="r_general" placeholder="e.g. underwater video, gate code...">'+esc(r.general_note)+'</textarea>'+
+    '<button class="btn primary" style="margin-top:12px" onclick="saveReport('+j.id+')">Save report</button></div>';
+
+  var billing=isAdmin()?('<div class="card"><h3>Billing</h3>'+(inv?
+      ('<div class="small">$'+Number(inv.amount).toFixed(2)+' · '+esc(inv.method||'method?')+' · <span class="pill '+inv.status+'">'+(inv.status==='paid'?'Paid':'Pending')+'</span></div>'+
+       '<div class="row" style="margin-top:8px">'+(inv.status!=='paid'?'<button class="btn sm primary" onclick="payInvoice('+inv.id+',\'zelle\')">Paid (Zelle)</button><button class="btn sm" onclick="payInvoice('+inv.id+',\'card\')">Paid (Card)</button><button class="btn sm" onclick="payInvoice('+inv.id+',\'cash\')">Paid (Cash)</button>':'')+'</div>')
+      :('<div class="small muted">No charge for this job yet.</div><div class="row" style="margin-top:8px"><input id="inv_amt" type="number" step="0.01" value="'+(j.price==null?'':j.price)+'" style="flex:1"><select id="inv_m" style="width:auto"><option value="card">Card</option><option value="zelle">Zelle</option><option value="cash">Cash</option></select><button class="btn" onclick="createInvoice('+j.id+')">Create charge</button></div>'))+'</div>'):'';
+
+  shell('schedule',head+report+billing+'<a class="small" href="#/schedule?date='+j.scheduled_date+'">← Back to schedule</a>');
 }
-function savePrice(id){var j=byId('jobs',id);j.price=$('#jp').value===''?null:Number($('#jp').value);save();toast('Valor salvo');}
+function savePrice(id){ var j=byId('jobs',id); j.price=$('#jp').value===''?null:Number($('#jp').value); save(); toast('Price saved'); }
+function saveJobNotes(id){ var j=byId('jobs',id); j.notes=$('#jn').value; save(); toast('Notes saved'); }
 function saveReport(id){
-  var r=S.data.reports.find(function(x){return x.job_id===id;});
-  var body={job_id:id,bottom_paint:$('#r_bottom').value,waterline:$('#r_water').value,waterline_note:$('#r_water_note').value,running_gear:$('#r_gear').value,running_gear_note:$('#r_gear_note').value,intakes_clean:$('#r_intakes').checked,intakes_note:$('#r_intakes_note').value,zinc:$('#r_zinc').value,zinc_note:$('#r_zinc_note').value,damage_note:$('#r_damage').value,general_note:$('#r_general').value};
+  var r=S.data.reports.find(function(x){ return x.job_id===id; });
+  var body={job_id:id,bottom_paint:$('#r_bottom').value,waterline:$('#r_water').value,waterline_note:$('#r_water_note').value,
+    running_gear:$('#r_gear').value,running_gear_note:$('#r_gear_note').value,intakes_clean:$('#r_intakes').checked,intakes_note:$('#r_intakes_note').value,
+    zinc:$('#r_zinc').value,zinc_note:$('#r_zinc_note').value,damage_note:$('#r_damage').value,general_note:$('#r_general').value};
   if(r){ Object.assign(r,body); } else { S.data.reports.push(body); }
-  save();toast('Relatorio salvo');render();
+  save(); toast('Report saved'); render();
 }
 function createInvoice(jobId){
-  var j=byId('jobs',jobId);var b=byId('boats',j.boat_id)||{};
-  var id=uid('invoices');
-  S.data.invoices.push({id:id,job_id:jobId,client_id:b.client_id||null,amount:Number($('#inv_amt').value||0),method:$('#inv_m').value,status:'pending'});
-  if(j.price==null){j.price=Number($('#inv_amt').value||0);}
-  save();toast('Cobranca criada');render();
+  var j=byId('jobs',jobId); var b=byId('boats',j.boat_id)||{};
+  var amt=Number($('#inv_amt').value||0);
+  S.data.invoices.push({id:uid('invoices'),job_id:jobId,client_id:b.client_id||null,amount:amt,method:$('#inv_m').value,status:'pending'});
+  if(j.price==null) j.price=amt;
+  save(); toast('Charge created'); render();
 }
-function payInvoice(id,method){var i=byId('invoices',id);i.status='paid';i.method=method;i.paid_at=new Date().toISOString();save();toast('Pago');render();}
+function payInvoice(id,method){ var i=byId('invoices',id); i.status='paid'; i.method=method; i.paid_at=new Date().toISOString(); save(); toast('Paid'); render(); }
 
-// ================= clients =================
+/* ---------- clients ---------- */
 function viewClients(){
   var list=S.data.clients;
-  shell('clients','<div class="card"><h3>Novo cliente</h3><label>Nome*</label><input id="c_name"><div class="row"><div style="flex:1"><label>Telefone</label><input id="c_phone" placeholder="+1 ..."></div><div style="flex:1"><label>E-mail</label><input id="c_email"></div></div><label>Endereco</label><input id="c_addr"><label>Observacoes</label><input id="c_notes"><button class="btn primary" style="margin-top:10px" onclick="saveClient()">Salvar cliente</button></div>'+
-   '<div class="card"><h3>Clientes ('+list.length+')</h3>'+(list.map(function(c){return '<div class="list-item"><div><strong>'+esc(c.name)+'</strong><div class="small muted">'+esc(c.phone||'')+(c.email?' · '+esc(c.email):'')+(c.address?' · '+esc(c.address):'')+'</div></div><button class="btn sm ghost" onclick="editClient('+c.id+')">Editar</button></div>';}).join('')||'<p class="muted small">Nenhum cliente.</p>')+'</div>');
+  shell('clients','<div class="card"><h3>New client</h3>'+
+    '<label>Name *</label><input id="c_name">'+
+    '<div class="row"><div class="f"><label>Phone</label><input id="c_phone" placeholder="+1 ..."></div><div class="f"><label>Email</label><input id="c_email"></div></div>'+
+    '<label>Address</label><input id="c_addr"><label>Notes</label><input id="c_notes">'+
+    '<button class="btn primary" style="margin-top:12px" onclick="saveClient()">Save client</button></div>'+
+    '<div class="card"><h3>Clients ('+list.length+')</h3>'+((list.map(function(c){
+      return '<div class="list-item"><div><strong>'+esc(c.name)+'</strong><div class="small muted">'+esc(c.phone||'')+(c.email?' · '+esc(c.email):'')+(c.address?' · '+esc(c.address):'')+'</div></div>'+
+      '<button class="btn sm ghost" onclick="editClient('+c.id+')">Edit</button></div>';
+    }).join(''))||'<p class="muted small">No clients yet.</p>')+'</div>');
 }
-function editClient(id){var c=byId('clients',id);$('#c_name').value=c.name||'';$('#c_phone').value=c.phone||'';$('#c_email').value=c.email||'';$('#c_addr').value=c.address||'';$('#c_notes').value=c.notes||'';window._ec=id;toast('Editando '+c.name+' — salve para atualizar');}
+function editClient(id){ var c=byId('clients',id); $('#c_name').value=c.name||''; $('#c_phone').value=c.phone||''; $('#c_email').value=c.email||''; $('#c_addr').value=c.address||''; $('#c_notes').value=c.notes||''; window._ec=id; toast('Editing '+c.name+' — press Save to update'); }
 function saveClient(){
-  var name=$('#c_name').value.trim(); if(!name) return toast('Nome obrigatorio');
+  var name=$('#c_name').value.trim(); if(!name) return toast('Name is required');
   var body={name:name,phone:$('#c_phone').value,email:$('#c_email').value,address:$('#c_addr').value,notes:$('#c_notes').value};
   if(window._ec){ Object.assign(byId('clients',window._ec),body); window._ec=null; } else { body.id=uid('clients'); S.data.clients.push(body); }
-  save();toast('Salvo');render();
+  save(); toast('Saved'); render();
 }
 
-// ================= boats =================
+/* ---------- boats ---------- */
 function viewBoats(){
   var cl=S.data.clients;
-  shell('boats','<div class="card"><h3>Novo barco</h3><label>Cliente</label><select id="b_client"><option value="">—</option>'+cl.map(function(c){return '<option value="'+c.id+'">'+esc(c.name)+'</option>';}).join('')+'</select>'+
-   '<div class="row"><div style="flex:1"><label>Nome do barco</label><input id="b_name"></div><div style="flex:1"><label>Comprimento (pes)</label><input id="b_len" type="number"></div></div>'+
-   '<div class="row"><div style="flex:1"><label>Marca (casco)</label><input id="b_make"></div><div style="flex:1"><label>Modelo</label><input id="b_model"></div></div>'+
-   '<label>HIN (n do casco)</label><input id="b_hin" placeholder="12 caracteres — peca ao proprietario">'+
-   '<div class="row"><div style="flex:1"><label>Marina</label><input id="b_marina"></div><div style="flex:1"><label>Slip</label><input id="b_slip"></div></div>'+
-   '<label>Acesso (gate code, peculiaridades)</label><textarea id="b_access" placeholder="ex: gate code 1234; entrar pelo pier B"></textarea>'+
-   '<div class="row"><div style="flex:1"><label>Frequencia</label><select id="b_freq">'+Object.keys(FREQ).map(function(k){return '<option value="'+k+'"'+(k==='monthly'?' selected':'')+'>'+FREQ[k]+'</option>';}).join('')+'</select></div><div style="flex:1"><label>Valor padrao (US$)</label><input id="b_price" type="number" step="0.01"></div></div>'+
-   '<label class="small" style="color:var(--text)"><input type="checkbox" id="b_video" style="width:auto;margin-right:6px">Exigir video do servico</label>'+
-   '<button class="btn primary" style="margin-top:10px" onclick="saveBoat()">Salvar barco</button></div>'+
-   '<div class="card"><h3>Barcos ('+S.data.boats.length+')</h3>'+(S.data.boats.map(function(b){var c=b.client_id?byId('clients',b.client_id):null;return '<div class="list-item"><div><strong>'+esc(b.name||'Barco '+b.id)+'</strong>'+(b.length_ft?' <span class="muted small">'+b.length_ft+"'</span>":'')+'<div class="small muted">'+esc(c?c.name:'sem cliente')+' · '+esc(b.marina||'—')+' · '+esc(FREQ[b.frequency]||'')+(b.hin?' · HIN '+esc(b.hin):'')+'</div>'+(b.access_notes?'<div class="small" style="color:var(--warn)">🔑 '+esc(b.access_notes)+'</div>':'')+'</div><button class="btn sm ghost" onclick="editBoat('+b.id+')">Editar</button></div>';}).join('')||'<p class="muted small">Nenhum barco.</p>')+'</div>');
+  shell('boats','<div class="card"><h3>New boat</h3>'+
+    '<label>Client</label><select id="b_client"><option value="">—</option>'+cl.map(function(c){ return '<option value="'+c.id+'">'+esc(c.name)+'</option>'; }).join('')+'</select>'+
+    '<div class="row"><div class="f"><label>Boat name</label><input id="b_name"></div><div class="f"><label>Length (ft)</label><input id="b_len" type="number" onchange="hintBoatPrice()"></div></div>'+
+    '<div class="row"><div class="f"><label>Hull make</label><input id="b_make"></div><div class="f"><label>Model</label><input id="b_model"></div></div>'+
+    '<label>HIN (hull number)</label><input id="b_hin" placeholder="12 characters — ask the owner">'+
+    '<div class="row"><div class="f"><label>Marina</label><input id="b_marina"></div><div class="f"><label>Slip</label><input id="b_slip"></div></div>'+
+    '<label>Access notes (gate code, dock quirks)</label><textarea id="b_access" placeholder="e.g. gate code 1234; enter via pier B"></textarea>'+
+    '<div class="row"><div class="f"><label>Frequency</label><select id="b_freq">'+Object.keys(FREQ).map(function(k){ return '<option value="'+k+'"'+(k==='monthly'?' selected':'')+'>'+FREQ[k]+'</option>'; }).join('')+'</select></div>'+
+    '<div class="f"><label>Default price (USD)</label><input id="b_price" type="number" step="0.01"></div></div>'+
+    '<p class="small muted" id="b_pricehint"></p>'+
+    '<label class="small" style="color:var(--text);font-weight:400"><input type="checkbox" id="b_video" style="width:auto;margin-right:6px">Require underwater video</label>'+
+    '<button class="btn primary" style="margin-top:12px" onclick="saveBoat()">Save boat</button></div>'+
+    '<div class="card"><h3>Boats ('+S.data.boats.length+')</h3>'+((S.data.boats.map(function(b){
+      var c=b.client_id?byId('clients',b.client_id):null;
+      return '<div class="list-item"><div><strong>'+esc(b.name||'Boat '+b.id)+'</strong>'+(b.length_ft?' <span class="muted small">'+b.length_ft+" ft</span>":'')+
+        '<div class="small muted">'+esc(c?c.name:'no client')+' · '+esc(b.marina||'—')+' · '+esc(FREQ[b.frequency]||'')+(b.hin?' · HIN '+esc(b.hin):'')+'</div>'+
+        (b.access_notes?'<div class="small" style="color:var(--warn)">🔑 '+esc(b.access_notes)+'</div>':'')+'</div>'+
+        '<button class="btn sm ghost" onclick="editBoat('+b.id+')">Edit</button></div>';
+    }).join(''))||'<p class="muted small">No boats yet.</p>')+'</div>');
 }
-function editBoat(id){var b=byId('boats',id);$('#b_client').value=b.client_id||'';$('#b_name').value=b.name||'';$('#b_len').value=b.length_ft||'';$('#b_make').value=b.make||'';$('#b_model').value=b.model||'';$('#b_hin').value=b.hin||'';$('#b_marina').value=b.marina||'';$('#b_slip').value=b.slip||'';$('#b_access').value=b.access_notes||'';$('#b_freq').value=b.frequency||'monthly';$('#b_price').value=b.default_price==null?'':b.default_price;$('#b_video').checked=!!b.require_video;window._eb=id;toast('Editando '+(b.name||'barco')+' — salve para atualizar');}
+function hintBoatPrice(){ var ft=Number($('#b_len').value); if(!ft) return; var p=bottomPrice(ft); $('#b_pricehint').textContent = p!=null?('Bottom Cleaning price for this size: $'+p):'No Bottom Cleaning price set for this size (Settings).'; }
+function editBoat(id){
+  var b=byId('boats',id);
+  $('#b_client').value=b.client_id||''; $('#b_name').value=b.name||''; $('#b_len').value=b.length_ft||''; $('#b_make').value=b.make||''; $('#b_model').value=b.model||'';
+  $('#b_hin').value=b.hin||''; $('#b_marina').value=b.marina||''; $('#b_slip').value=b.slip||''; $('#b_access').value=b.access_notes||'';
+  $('#b_freq').value=b.frequency||'monthly'; $('#b_price').value=b.default_price==null?'':b.default_price; $('#b_video').checked=!!b.require_video;
+  window._eb=id; toast('Editing '+(b.name||'boat')+' — press Save to update');
+}
 function saveBoat(){
-  var body={client_id:Number($('#b_client').value)||null,name:$('#b_name').value.trim(),length_ft:$('#b_len').value||null,make:$('#b_make').value,model:$('#b_model').value,hin:$('#b_hin').value,marina:$('#b_marina').value,slip:$('#b_slip').value,access_notes:$('#b_access').value,frequency:$('#b_freq').value,default_price:$('#b_price').value===''?null:Number($('#b_price').value),require_video:$('#b_video').checked};
-  if(!body.name&&!body.hin) return toast('Informe ao menos o nome ou o HIN');
+  var body={client_id:Number($('#b_client').value)||null,name:$('#b_name').value.trim(),length_ft:$('#b_len').value||null,make:$('#b_make').value,model:$('#b_model').value,
+    hin:$('#b_hin').value,marina:$('#b_marina').value,slip:$('#b_slip').value,access_notes:$('#b_access').value,frequency:$('#b_freq').value,
+    default_price:$('#b_price').value===''?null:Number($('#b_price').value),require_video:$('#b_video').checked};
+  if(!body.name&&!body.hin) return toast('Enter at least a name or HIN');
   if(window._eb){ Object.assign(byId('boats',window._eb),body); window._eb=null; } else { body.id=uid('boats'); body.active=1; S.data.boats.push(body); }
-  save();toast('Salvo');render();
+  save(); toast('Saved'); render();
 }
 
-// ================= finance =================
-function viewFinance(){
+/* ---------- quotes ---------- */
+function viewQuotes(){
+  var qs=S.data.quotes.slice().sort(function(a,b){ return (b.created_at||'').localeCompare(a.created_at||''); });
+  var open=qs.filter(function(q){ return q.status==='draft'||q.status==='sent'; }).length;
+  var won=qs.filter(function(q){ return q.status==='accepted'; }).length;
+  var lost=qs.filter(function(q){ return q.status==='declined'; }).length;
+  var card=function(q){
+    return '<div class="jobrow">'+
+      '<div><strong>'+esc(q.name||'Prospect')+'</strong> <span class="pill '+q.status+'">'+QSTATUS[q.status]+'</span>'+(q.converted?' <span class="pill converted">Customer</span>':'')+'</div>'+
+      '<div class="meta">'+esc(q.boat||'')+(q.boat&&q.service?' · ':'')+esc(q.service||'')+(q.amount!==''&&q.amount!=null?' · $'+Number(q.amount).toFixed(2):'')+(q.phone?' · '+esc(q.phone):'')+'</div>'+
+      (q.notes?'<div class="meta">'+esc(q.notes)+'</div>':'')+
+      '<div class="actions">'+
+        '<button class="btn sm steel" onclick="quoteMsg('+q.id+')">🧾 Send quote</button>'+
+        (q.status==='draft'?'<button class="btn sm" onclick="setQuoteStatus('+q.id+',\'sent\')">Mark sent</button>':'')+
+        (q.status!=='accepted'?'<button class="btn sm primary" onclick="setQuoteStatus('+q.id+',\'accepted\')">Accepted</button>':'')+
+        (q.status!=='declined'?'<button class="btn sm danger" onclick="setQuoteStatus('+q.id+',\'declined\')">Declined</button>':'')+
+        (q.status==='accepted'&&!q.converted?'<button class="btn sm dark" onclick="convertQuote('+q.id+')">➕ Convert to client</button>':'')+
+        '<button class="btn sm ghost" onclick="editQuote('+q.id+')">Edit</button>'+
+        '<button class="btn sm ghost" onclick="deleteQuote('+q.id+')">✕</button>'+
+      '</div></div>';
+  };
+  shell('quotes','<div class="grid"><div class="kpi"><b>'+open+'</b><span>Open quotes</span></div><div class="kpi"><b>'+won+'</b><span>Accepted</span></div><div class="kpi"><b>'+lost+'</b><span>Declined</span></div></div>'+
+    '<div class="card"><h3>New quote</h3>'+
+    '<label>Prospect name *</label><input id="q_name">'+
+    '<div class="row"><div class="f"><label>Phone</label><input id="q_phone" placeholder="+1 ..."></div><div class="f"><label>Boat (name / size)</label><input id="q_boat"></div></div>'+
+    '<div class="row"><div class="f"><label>Service</label><select id="q_service">'+SERVICES.map(function(s){ return '<option>'+esc(s.name)+'</option>'; }).join('')+'<option>Other</option></select></div>'+
+    '<div class="f"><label>Amount (USD)</label><input id="q_amount" type="number" step="0.01" placeholder="leave blank if variable"></div></div>'+
+    '<label>Notes</label><input id="q_notes">'+
+    '<button class="btn primary" style="margin-top:12px" onclick="saveQuote()">Save quote</button></div>'+
+    '<div class="card"><h3>Quotes ('+qs.length+')</h3>'+((qs.map(card).join(''))||'<p class="muted small">No quotes yet.</p>')+'</div>');
+}
+function saveQuote(){
+  var name=$('#q_name').value.trim(); if(!name) return toast('Prospect name is required');
+  var body={name:name,phone:$('#q_phone').value,boat:$('#q_boat').value,service:$('#q_service').value,
+    amount:$('#q_amount').value===''?null:Number($('#q_amount').value),notes:$('#q_notes').value,status:'draft',
+    created_at:new Date().toISOString(),converted:false};
+  if(window._eq){ Object.assign(byId('quotes',window._eq),body); window._eq=null; }
+  else { body.id=uid('quotes'); S.data.quotes.push(body); }
+  save(); toast('Quote saved'); render();
+}
+function editQuote(id){
+  var q=byId('quotes',id);
+  $('#q_name').value=q.name||''; $('#q_phone').value=q.phone||''; $('#q_boat').value=q.boat||''; $('#q_service').value=q.service||'Bottom Cleaning';
+  $('#q_amount').value=q.amount==null?'':q.amount; $('#q_notes').value=q.notes||'';
+  window._eq=id; toast('Editing quote — press Save to update'); window.scrollTo(0,0);
+}
+function setQuoteStatus(id,st){
+  var q=byId('quotes',id); q.status=st; q.decided_at=new Date().toISOString();
+  if(st==='sent'&&!q.sent_at) q.sent_at=new Date().toISOString();
+  save(); toast('Quote '+QSTATUS[st]); render();
+}
+function deleteQuote(id){ if(!confirm('Delete this quote?')) return; S.data.quotes=S.data.quotes.filter(function(q){ return q.id!==id; }); save(); render(); }
+function convertQuote(id){
+  var q=byId('quotes',id); if(q.converted) return;
+  var cid=uid('clients');
+  S.data.clients.push({id:cid,name:q.name,phone:q.phone||'',email:'',address:'',notes:'From quote #'+q.id});
+  var lengthFt=null; var mm=String(q.boat||'').match(/(\d{2,3})/); if(mm) lengthFt=Number(mm[1]);
+  if(q.boat){ S.data.boats.push({id:uid('boats'),client_id:cid,name:q.boat,length_ft:lengthFt,make:'',model:'',hin:'',marina:'',slip:'',access_notes:'',frequency:'monthly',default_price:null,require_video:false,active:1}); }
+  q.converted=true; q.converted_client_id=cid;
+  save(); toast('Converted to client'); render();
+}
+function quoteMsg(id){
+  var q=byId('quotes',id);
+  var t='QUOTE — Diamond Diving LLC\n\n'+
+    'Prospect: '+q.name+'\n'+
+    (q.boat?'Vessel: '+q.boat+'\n':'')+
+    'Service: '+q.service+'\n'+
+    (q.amount!=null?'Price: $'+Number(q.amount).toFixed(2)+'\n':'Price: on request\n')+
+    (q.notes?'Notes: '+q.notes+'\n':'')+
+    '\nThis quote is valid for 30 days. To accept, just reply to this message.\n\n'+
+    'Diamond Diving LLC — Underwater boat maintenance in South Florida\n(561) 000-0000';
+  openModal('Send quote — copy or share', t);
+  if(q.status==='draft'){ q.status='sent'; q.sent_at=new Date().toISOString(); save(); }
+}
+
+/* ---------- billing ---------- */
+function viewBilling(){
   var inv=S.data.invoices;
-  var pending=inv.filter(function(i){return i.status==='pending';});
-  var paid=inv.filter(function(i){return i.status==='paid';});
-  var row=function(i){var j=i.job_id?byId('jobs',i.job_id):null;var b=j?byId('boats',j.boat_id):null;var c=i.client_id?byId('clients',i.client_id):(b&&b.client_id?byId('clients',b.client_id):null);
-    return '<div class="list-item"><div><strong>US$ '+Number(i.amount).toFixed(2)+'</strong> <span class="pill '+i.status+'">'+(i.status==='paid'?'Pago':'Pendente')+'</span><div class="small muted">'+esc(c?c.name:'cliente?')+' · '+esc(b?b.name:'')+' · '+(j?fmtDate(j.scheduled_date):'')+(i.method?' · '+esc(i.method):'')+'</div></div>'+(i.status!=='paid'?'<button class="btn sm primary" onclick="payInvoice('+i.id+',\'zelle\')">Pago</button>':'')+'</div>';};
-  var sum=function(a){return a.reduce(function(s,i){return s+Number(i.amount||0);},0);};
-  shell('finance','<div class="grid"><div class="kpi"><b>US$ '+sum(pending).toFixed(0)+'</b><span>A receber ('+pending.length+')</span></div><div class="kpi"><b>US$ '+sum(paid).toFixed(0)+'</b><span>Recebido ('+paid.length+')</span></div></div><div class="card"><h3>Pendentes</h3>'+(pending.map(row).join('')||'<p class="muted small">Nada pendente.</p>')+'</div><div class="card"><h3>Pagas</h3>'+(paid.map(row).join('')||'<p class="muted small">Nada pago.</p>')+'</div>');
+  var pending=inv.filter(function(i){ return i.status==='pending'; });
+  var paid=inv.filter(function(i){ return i.status==='paid'; });
+  var row=function(i){
+    var j=i.job_id?byId('jobs',i.job_id):null; var b=j?byId('boats',j.boat_id):null;
+    var c=i.client_id?byId('clients',i.client_id):(b&&b.client_id?byId('clients',b.client_id):null);
+    return '<div class="list-item"><div><strong>$'+Number(i.amount).toFixed(2)+'</strong> <span class="pill '+i.status+'">'+(i.status==='paid'?'Paid':'Pending')+'</span>'+
+      '<div class="small muted">'+esc(c?c.name:'client?')+' · '+esc(b?b.name:'')+' · '+(j?fmtDate(j.scheduled_date):'')+(i.method?' · '+esc(i.method):'')+'</div></div>'+
+      (i.status!=='paid'?'<div class="row"><button class="btn sm primary" onclick="payInvoice('+i.id+',\'zelle\')">Zelle</button><button class="btn sm" onclick="payInvoice('+i.id+',\'card\')">Card</button><button class="btn sm" onclick="payInvoice('+i.id+',\'cash\')">Cash</button></div>':'')+'</div>';
+  };
+  var sum=function(a){ return a.reduce(function(s,i){ return s+Number(i.amount||0); },0); };
+  shell('billing','<div class="grid"><div class="kpi"><b>$'+sum(pending).toFixed(0)+'</b><span>Pending ('+pending.length+')</span></div><div class="kpi"><b>$'+sum(paid).toFixed(0)+'</b><span>Paid ('+paid.length+')</span></div></div>'+
+    '<div class="card"><h3>Pending</h3>'+((pending.map(row).join(''))||'<p class="muted small">Nothing pending.</p>')+'</div>'+
+    '<div class="card"><h3>Paid</h3>'+((paid.map(row).join(''))||'<p class="muted small">Nothing paid yet.</p>')+'</div>');
 }
 
-// ================= settings / backup =================
+/* ---------- settings ---------- */
 function viewSettings(){
-  shell('settings','<div class="card"><h3>Backup (recomendado)</h3><p class="small muted">Salve um arquivo com todos os dados. Se o Safari nao estiver guardando automaticamente, este e o seu seguro.</p><div class="row"><button class="btn primary" onclick="exportBackup()">Exportar backup</button><label class="btn" style="margin:0;cursor:pointer">Importar backup<input type="file" accept=".json,application/json" style="display:none" onchange="importBackup(this)"></label></div><p class="small muted" id="bkstatus">'+(S.persistent?'Armazenamento automatico: OK':'Armazenamento automatico: INDISPONIVEL neste navegador')+'</p></div>'+
-   '<div class="card"><h3>Equipe (mergulhadores)</h3><div id="divers">'+S.data.settings.divers.map(function(d,i){return '<div class="list-item">'+esc(d)+' <button class="btn sm ghost" onclick="removeDiver('+i+')">remover</button></div>';}).join('')+'</div><div class="row"><input id="newdiver" placeholder="Nome do mergulhador"><button class="btn" onclick="addDiver()">Adicionar</button></div></div>'+
-   '<div class="card"><h3>Zerar dados</h3><p class="small muted">Apaga clientes, barcos, OS, relatorios e cobrancas deste aparelho.</p><button class="btn" style="border-color:var(--bad);color:var(--bad)" onclick="wipe()">Apagar tudo</button></div>');
+  shell('settings','<div class="card"><h3>Bottom Cleaning price by boat size</h3><p class="small muted">Used to auto-price Bottom Cleaning appointments. Leave blank if you prefer to price manually.</p>'+
+    (S.data.settings.pricing||[]).map(function(t,i){ return '<div class="price-tier"><span>'+esc(t.label)+'</span><input type="number" step="0.01" placeholder="$" value="'+(t.price==null?'':t.price)+'" onchange="setPrice('+i+',this.value)"></div>'; }).join('')+
+    '<button class="btn primary" style="margin-top:12px" onclick="save(); toast(\'Prices saved\')">Save prices</button></div>'+
+    '<div class="card"><h3>Divers</h3><p class="small muted">Office registers the divers. Each diver sees only their own schedule, plus boat name, size and location.</p>'+
+    S.data.settings.divers.map(function(d,i){ return '<div class="list-item"><span>'+esc(d)+'</span><button class="btn sm ghost" onclick="removeDiver('+i+')">Remove</button></div>'; }).join('')+
+    '<div class="row" style="margin-top:10px"><input id="newdiver" placeholder="Diver name"><button class="btn" onclick="addDiver()">Add diver</button></div></div>'+
+    '<div class="card"><h3>Backup</h3><p class="small muted">Save a file with all data. Recommended before closing the browser.</p>'+
+    '<div class="row"><button class="btn primary" onclick="exportBackup()">Export backup</button>'+
+    '<label class="btn" style="margin:0;cursor:pointer;font-weight:500">Import backup<input type="file" accept=".json,application/json" style="display:none" onchange="importBackup(this)"></label></div>'+
+    '<p class="small muted">Automatic saving: '+(S.persistent?'OK':'NOT AVAILABLE in this browser')+'</p></div>'+
+    '<div class="card"><h3>Danger zone</h3><button class="btn danger" onclick="wipe()">Erase all data</button></div>');
 }
-function addDiver(){var n=$('#newdiver').value.trim();if(!n)return;S.data.settings.divers.push(n);save();render();}
-function removeDiver(i){S.data.settings.divers.splice(i,1);save();render();}
+function setPrice(i,v){ S.data.settings.pricing[i].price = v===''?null:Number(v); }
+function addDiver(){ var n=$('#newdiver').value.trim(); if(!n) return; S.data.settings.divers.push(n); save(); render(); }
+function removeDiver(i){ S.data.settings.divers.splice(i,1); save(); render(); }
 function exportBackup(){
   var blob=new Blob([JSON.stringify(S.data,null,2)],{type:'application/json'});
-  var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='diamond-backup-'+today()+'.json';document.body.appendChild(a);a.click();a.remove();toast('Backup exportado');
+  var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='diamond-diving-backup-'+today()+'.json';
+  document.body.appendChild(a); a.click(); a.remove(); toast('Backup exported');
 }
 function importBackup(inp){
   var f=inp.files[0]; if(!f) return;
   var rd=new FileReader();
-  rd.onload=function(){ try{ var d=JSON.parse(rd.result); if(!d.clients||!d.boats) throw new Error('formato'); S.data=d; save(); toast('Backup importado'); render(); }catch(e){ alert('Arquivo invalido'); } };
+  rd.onload=function(){ try{ var d=JSON.parse(rd.result); if(!d.clients||!d.boats) throw new Error('bad format'); S.data=d; if(!S.data.settings.pricing) S.data.settings.pricing=defaultPricing(); if(!S.data.quotes) S.data.quotes=[]; save(); toast('Backup imported'); render(); }catch(e){ alert('Invalid file'); } };
   rd.readAsText(f);
 }
-function wipe(){ if(!confirm('Apagar TODOS os dados?')) return; S.data=blank(); save(); toast('Apagado'); render(); }
+function wipe(){ if(!confirm('Erase ALL data?')) return; S.data=blank(); save(); toast('Erased'); render(); }
 
-// ================= mensagens =================
-function openModal(t,x){$('#modal-title').textContent=t;$('#modal-body').textContent=x;$('#modal').hidden=false;}
-function closeModal(){$('#modal').hidden=true;}
-function copyModal(){ var t=$('#modal-body').textContent; if(navigator.clipboard){navigator.clipboard.writeText(t).then(function(){toast('Copiado');},function(){toast('Copie manualmente');});} else {toast('Copie manualmente');} }
+/* ---------- messages ---------- */
+var _modalText='';
+function openModal(title,text){ _modalText=text; $('#modal-title').textContent=title; $('#modal-body').textContent=text; $('#modal').hidden=false; }
+function closeModal(){ $('#modal').hidden=true; }
+function copyModal(){
+  if(navigator.clipboard){ navigator.clipboard.writeText(_modalText).then(function(){ toast('Copied'); },function(){ fallbackCopy(); }); }
+  else fallbackCopy();
+}
+function fallbackCopy(){ var ta=document.createElement('textarea'); ta.value=_modalText; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); toast('Copied'); }catch(e){ toast('Copy manually'); } ta.remove(); }
+function shareModal(){
+  if(navigator.share){ navigator.share({title:'Diamond Diving',text:_modalText}).catch(function(){}); }
+  else { copyModal(); }
+}
 function msgClientConfirm(id){
-  var j=byId('jobs',id);var b=byId('boats',j.boat_id)||{};var c=b.client_id?byId('clients',b.client_id):null;
-  var svc=(S.data.settings.services.find(function(s){return s.id===j.service_id;})||{}).name||'bottom cleaning';
-  openModal('Mensagem para o cliente','Hi '+(c?c.name:'')+', this is Diamond Diving. Your boat "'+(b.name||'')+'" is scheduled for '+fmtDate(j.scheduled_date)+(j.optional_time?' at '+j.optional_time:'')+'. Service: '+svc+'. '+(b.access_notes?'Access note: '+b.access_notes+'. ':'')+'We will send photos and the report after the service. Thanks!');
+  var j=byId('jobs',id); var b=byId('boats',j.boat_id)||{}; var c=b.client_id?byId('clients',b.client_id):null;
+  openModal('Client confirmation text','Hi '+(c?c.name:'')+', this is Diamond Diving. Your boat "'+(b.name||'')+'" is scheduled for '+fmtDate(j.scheduled_date)+'. Service: '+serviceName(j.service_id)+'. '+(b.access_notes?'Access note: '+b.access_notes+'. ':'')+'We will send photos and the report after the service. Thanks!');
 }
 function msgReport(id){
-  var j=byId('jobs',id);var b=byId('boats',j.boat_id)||{};
-  var r=S.data.reports.find(function(x){return x.job_id===id;}); if(!r) return toast('Sem relatorio');
-  var p=function(v){return v?v.charAt(0).toUpperCase()+v.slice(1):'—';};
+  var j=byId('jobs',id); var b=byId('boats',j.boat_id)||{};
+  var r=S.data.reports.find(function(x){ return x.job_id===id; }); if(!r) return toast('No report yet');
+  var p=function(v){ return v?(v==='none'?'N/A':v.charAt(0).toUpperCase()+v.slice(1)):'—'; };
   var t='Report '+fmtDate(j.scheduled_date)+'\n\n'+(b.name||'')+(b.length_ft?' '+b.length_ft+"'":'')+'\n'+
     'Bottom paint: '+p(r.bottom_paint)+(r.waterline?' / Waterline: '+p(r.waterline):'')+(r.waterline_note?' ('+r.waterline_note+')':'')+'\n'+
     'Running gear: '+p(r.running_gear)+(r.running_gear_note?' ('+r.running_gear_note+')':'')+'\n'+
     'Intakes: '+(r.intakes_clean?'Clean and clear of debris':'See note')+(r.intakes_note?' ('+r.intakes_note+')':'')+'\n'+
     'Zinc: '+p(r.zinc)+(r.zinc_note?' '+r.zinc_note:'')+'\n'+
     (r.damage_note?'Damage: '+r.damage_note+'\n':'')+(r.general_note?'Notes: '+r.general_note+'\n':'');
-  openModal('Texto do relatorio',t);
+  openModal('Report text',t);
 }
 function daySheet(date,diver){
-  var arr=S.data.jobs.filter(function(j){return j.scheduled_date===date&&(j.diver||'Sem mergulhador')===diver;}).sort(function(a,b){return a.sequence-b.sequence;});
-  var t='Schedule '+fmtDate(date)+' — '+diver+'\n\n'+arr.map(function(j,i){var b=byId('boats',j.boat_id)||{};var svc=(S.data.settings.services.find(function(s){return s.id===j.service_id;})||{}).name||'Servico';
-    return (i+1)+'. '+(b.name||'')+(b.length_ft?" ("+b.length_ft+"'"+(b.make?' '+b.make:'')+')':'')+'\n   '+(b.marina||'marina nao informada')+(b.slip?' / slip '+b.slip:'')+'\n   '+svc+(j.optional_time?' — '+j.optional_time:'')+(b.access_notes?'\n   🔑 '+b.access_notes:'')+(b.require_video?'\n   📹 gravar video':'');}).join('\n\n');
-  openModal('Texto do dia (WhatsApp)',t);
+  var arr=S.data.jobs.filter(function(j){ return j.scheduled_date===date&&(j.diver||'Unassigned')===diver; }).sort(function(a,b){ return a.sequence-b.sequence; });
+  var t='Schedule '+fmtDate(date)+' — '+diver+'\n\n'+arr.map(function(j,i){
+    var b=byId('boats',j.boat_id)||{};
+    return (i+1)+'. '+(b.name||'')+(b.length_ft?" ("+b.length_ft+" ft"+(b.make?' '+b.make:'')+")":'')+'\n   '+(b.marina||'location not set')+(b.slip?' / slip '+b.slip:'')+
+      '\n   '+serviceName(j.service_id)+(b.access_notes?'\n   🔑 '+b.access_notes:'')+(b.require_video?'\n   📹 record video':'')+(j.notes?'\n   📝 '+j.notes:'');
+  }).join('\n\n');
+  openModal('Day sheet (send to diver)',t);
 }
 
-// ================= router =================
+/* ---------- router ---------- */
 function render(){
   var h=location.hash||'#/dashboard';
   try{
-    if(!isAdmin()&&(h.indexOf('#/clients')===0||h.indexOf('#/boats')===0||h.indexOf('#/finance')===0)){ location.hash='#/agenda'; return; }
+    if(!isAdmin()&&(h.indexOf('#/clients')===0||h.indexOf('#/boats')===0||h.indexOf('#/quotes')===0||h.indexOf('#/billing')===0)){ location.hash='#/schedule'; return; }
     if(h.indexOf('#/job/')===0) return viewJob(Number(h.split('/')[2]));
-    if(h.indexOf('#/agenda')===0) return viewAgenda();
+    if(h.indexOf('#/schedule')===0) return viewSchedule();
     if(h.indexOf('#/clients')===0) return viewClients();
     if(h.indexOf('#/boats')===0) return viewBoats();
-    if(h.indexOf('#/finance')===0) return viewFinance();
+    if(h.indexOf('#/quotes')===0) return viewQuotes();
+    if(h.indexOf('#/billing')===0) return viewBilling();
     if(h.indexOf('#/settings')===0) return viewSettings();
     return viewDashboard();
-  }catch(e){ shell('dashboard','<div class="card"><p style="color:var(--bad)">Erro: '+esc(e.message)+'</p><button class="btn" onclick="render()">Tentar de novo</button></div>'); }
+  }catch(e){ shell('dashboard','<div class="card"><p style="color:var(--bad)">Error: '+esc(e.message)+'</p><button class="btn" onclick="render()">Try again</button></div>'); }
 }
 window.addEventListener('hashchange',render);
 load();
